@@ -47,6 +47,10 @@ if (isset($_FILES['image'], $_POST['title'], $_POST['description'])) {
 		<input type="text" name="title" id="title">
 		<label for="description">Description</label>
 		<textarea name="description" id="description"></textarea>
+		<!-- <label for="latitude">Latitude:</label>
+		<input type="text" name="latitude" id="latitude" required>
+		<label for="longitude">Longitude:</label>
+		<input type="text" name="longitude" id="longitude" required> -->
 	    <input type="submit" value="Upload Image" name="submit">
 	</form>
 	<p><?=$msg?></p>

@@ -23,6 +23,7 @@
     <div class="content home">
         <h2>Gallery</h2>
         <p>Welcome to the gallery page! You can view the list of uploaded images below.</p>
+        <!-- <a href="location.php" class="upload-image">Image Location</a> -->
         <a href="upload.php" class="upload-image">Upload Image</a>
         <a href="edit.php" class="upload-image">Edit Information</a>
         <div class="images">
