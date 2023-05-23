@@ -8,9 +8,11 @@ if (isset($_POST['id'], $_POST['title'], $_POST['description'])) {
     $stmt = $mysqli->prepare('UPDATE images SET title = ?, description = ? WHERE id = ?');
     $stmt->bind_param('ssi', $_POST['title'], $_POST['description'], $_POST['id']);
     if ($stmt->execute()) {
-        $msg = 'Image information updated successfully!';
+        alert('Image information updated successfully!!');
+        //$msg = 'Image information updated successfully!';
     } else {
-        $msg = 'Error updating image information.';
+        alert('Error updating image information!!');
+        //$msg = 'Error updating image information.';
     }
     $stmt->close();
     $mysqli->close();
