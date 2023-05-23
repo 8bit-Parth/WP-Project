@@ -2,18 +2,24 @@
 include 'functions.php';
 $msg = '';
 if (isset($_POST['id'], $_POST['title'], $_POST['description'])) {
+    // Connect to MySQL using mysqli
     $mysqli = mysqli_connect('localhost:3308', 'root', '', 'photogallery');
+    // Update image info in the database (title and description)
     $stmt = $mysqli->prepare('UPDATE images SET title = ?, description = ? WHERE id = ?');
     $stmt->bind_param('ssi', $_POST['title'], $_POST['description'], $_POST['id']);
     if ($stmt->execute()) {
-        $msg = 'Image information updated successfully!';
+        alert('Image information updated successfully!!');
+        //$msg = 'Image information updated successfully!';
     } else {
-        $msg = 'Error updating image information.';
+        alert('Error updating image information!!');
+        //$msg = 'Error updating image information.';
     }
     $stmt->close();
     $mysqli->close();
 } else if (isset($_GET['id'])) {
+    // Connect to MySQL using mysqli
     $mysqli = mysqli_connect('localhost:3308', 'root', '', 'photogallery');
+    // Select the record that is going to be edited
     $stmt = $mysqli->prepare('SELECT * FROM images WHERE id = ?');
     $stmt->bind_param('i', $_GET['id']);
     $stmt->execute();
