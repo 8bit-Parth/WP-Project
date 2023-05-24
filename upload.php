@@ -6,24 +6,24 @@ if (isset($_FILES['image'], $_POST['title'], $_POST['description'])) {
 	$image_path = $target_dir . basename($_FILES['image']['name']);
 	if (!empty($_FILES['image']['tmp_name']) && getimagesize($_FILES['image']['tmp_name'])) {
 		if (file_exists($image_path)) {
-			$msg = 'Image already exists, please choose another or rename that image.';
+			echo '<script>alert("Image already exists, please choose another or rename that image.")</script>';
 		} else if ($_FILES['image']['size'] > 500000) {
-			$msg = 'Image file size too large, please choose an image less than 500kb.';
+			echo '<script>alert("Image file size too large, please choose an image less than 500kb.")</script>';
 		} else {
 			move_uploaded_file($_FILES['image']['tmp_name'], $image_path);
 			$mysqli = mysqli_connect('localhost:3308', 'root', '', 'photogallery');
 			$stmt = $mysqli->prepare('INSERT INTO images (title, description, filepath, uploaded_date) VALUES (?, ?, ?, CURRENT_TIMESTAMP)');
 	        $stmt->bind_param('sss', $_POST['title'], $_POST['description'], $image_path);
 	        if ($stmt->execute()) {
-				$msg = 'Image uploaded successfully!';
+				echo '<script>alert("Image Uploaded Successfully!!")</script>';
 			} else {
-				$msg = 'Error uploading image.';
+				echo '<script>alert("Error uploading image.")</script>';
 			}
 			$stmt->close();
 			$mysqli->close();
 		}
 	} else {
-		$msg = 'Please upload an image!';
+		echo '<script>alert("Please upload an image!")</script>';
 	}
 }
 ?>

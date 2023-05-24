@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
             $stmt = mysqli_prepare($conn, 'DELETE FROM images WHERE id = ?');
             mysqli_stmt_bind_param($stmt, 'i', $_GET['id']);
             mysqli_stmt_execute($stmt);
-            $msg = 'You have deleted the image!';
+            echo '<script>alert("You have deleted the image!")</script>';
         } else {
             header('Location: index.php');
             exit;
